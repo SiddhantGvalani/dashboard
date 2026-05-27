@@ -1,0 +1,16 @@
+{
+  "accessMode": "external",
+  "integrations": {
+    "bombax-logistics-db": {
+      "type": "databases",
+      "connectionId": null,
+      "base": "BombaxLogisticsDb"
+    }
+  },
+  "seoSettings": {
+    "title": "Bombax Analysis ",
+    "faviconUrl": "https://images.fillout.com/orgid-657239/flowpublicid-m5ysogfz8t/widgetid-default/3SaVBTV2yJWGgDrBwi6LoN/Bombax-Logo.jpg",
+    "description": "",
+    "thumbnailUrl": "https://images.fillout.com/orgid-657239/flowpublicid-m5ysogfz8t/widgetid-default/tZBsL1o1ExTeFwg1AFJWwm/Bombax-Logo.jpg"
+  }
+}

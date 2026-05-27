@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-05-14T09:46:50.698Z",
+  "integrations": {
+    "bombax-logistics-db": {
+      "idMappings": {
+        "base": "6fa5793d6beb1dec",
+        "tables": {
+          "Users": "tdacaMcub1c",
+          "Projects": "t8sCEF39egh"
+        },
+        "fields": {
+          "Users": {
+            "email": "fdKsmW5CXYT",
+            "fullName": "f8kQdsPWqz9",
+            "mobile": "fgVxwAaqhAB",
+            "passwordHash": "fmKZoSCDT9H",
+            "role": "fcasKndM5Ti",
+            "status": "f4x5koGkK3a",
+            "createdAt": "fmHgrXhVuLE"
+          },
+          "Projects": {
+            "name": "fw2DmZjMLDB",
+            "sheetId": "fb167tgsMrF",
+            "sheetName": "f8HRV8WjzXg",
+            "serviceAccountJson": "fa1v9nnQ5QZ",
+            "startRow": "f1be4nbj3KR",
+            "createdAt": "fdDLrcpxKnn"
+          }
+        }
+      }
+    }
+  }
+}
