@@ -50,6 +50,17 @@ export default function KpiBlock({ kpis, onFailedClick, failedActive }: Props) {
           active={failedActive}
           clickable
         />
+        <KpiCard
+          label="Aging Shipments"
+          count={kpis.aging.length}
+          color="red"
+          icon={<XCircle className="w-6 h-6" />}
+          data={kpis.aging}
+          exportName="aging_shipments"
+          onClick={onFailedClick}
+          active={failedActive}
+          clickable
+        />
       </div>
     </div>
   );
