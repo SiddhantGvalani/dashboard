@@ -72,7 +72,7 @@ export default function ChartBlock({ kpis }: Props) {
     return Object.entries(counts)
       .map(([name, value]) => ({ name, value }))
       .sort((a, b) => b.value - a.value)
-      .slice(0, 15);
+      .slice(0, 5);
   }, [kpis.delivered]);
 
   // Chart 3 — Destination-wise Failed (red)
@@ -99,7 +99,7 @@ export default function ChartBlock({ kpis }: Props) {
   return Object.entries(counts)
     .map(([name, value]) => ({ name, value }))
     .sort((a, b) => b.value - a.value)
-    .slice(0, 15);
+    .slice(0, 5);
 }, [kpis.aging]);
 
   const chartHeight = (count: number) => Math.max(280, count * 32 + 40);
