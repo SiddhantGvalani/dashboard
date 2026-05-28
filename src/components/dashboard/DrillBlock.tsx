@@ -9,6 +9,7 @@ interface Props {
 // Columns shown in UI table (download always includes ALL columns)
 const DELAYED_DISPLAY_COLS = ['Status', 'Delivery Date', 'Customer Remarks'];
 const NOT_YET_DISPLAY_COLS = ['Status', 'Customer Remarks'];
+const AGING_COLS = ['Hub', 'Status', 'ETD'];
 
 export default function DrillBlock({ kpis }: Props) {
   return (
@@ -33,6 +34,13 @@ export default function DrillBlock({ kpis }: Props) {
           rows={kpis.notDelivered}
           exportName="not_yet_delivered"
           displayColumns={NOT_YET_DISPLAY_COLS}
+          icon={<AlertTriangle className="w-6 h-6" />}
+        />
+        <DrillSection
+          label="Aging"
+          rows={kpis.aging}
+          exportName="Aging Shipments"
+          displayColumns={AGING_COLS}
           icon={<AlertTriangle className="w-6 h-6" />}
         />
       </div>
