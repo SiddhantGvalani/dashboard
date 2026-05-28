@@ -7,6 +7,7 @@ export interface KpiResult {
   failed: ETDRecord[];
   delayed: ETDRecord[];
   notDelivered: ETDRecord[];
+  aging: ETDRecord[];
 }
 
 export function normalizeDate(dateStr: string): string {
@@ -39,6 +40,7 @@ export function computeKpis(rows: ETDRecord[]): KpiResult {
   const failed: ETDRecord[] = [];
   const delayed: ETDRecord[] = [];
   const notDelivered: ETDRecord[] = [];
+  const aging: ETDRecord[] = [];
 
   for (const row of rows) {
     total.push(row);
@@ -62,6 +64,7 @@ export function computeKpis(rows: ETDRecord[]): KpiResult {
       }
     }
   }
+  
 
   return { total, closed, delivered, failed, delayed, notDelivered };
 }
