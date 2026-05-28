@@ -42,12 +42,14 @@ export function computeKpis(rows: ETDRecord[]): KpiResult {
   const notDelivered: ETDRecord[] = [];
   const aging: ETDRecord[] = [];
 
+  const today = new Date();
+  
   for (const row of rows) {
     total.push(row);
     const normalizedStatus = (row['Status'] || '').toString().trim().toLowerCase();
-    const etd = normalizeDate(row['ETD'] ?? '');
+    const etd = normalizeDate(row['ETD'] ?? ''); //yyyy-mm-dd
     const deliveryDate = normalizeDate(row['Delivery Date'] ?? '');
-
+    const etdDate = new Date(etd);
     if (normalizedStatus.startsWith('rto')) {
       closed.push(row);
       continue;
@@ -60,13 +62,20 @@ export function computeKpis(rows: ETDRecord[]): KpiResult {
       if (deliveryDate && deliveryDate > etd) {
         delayed.push(row);
       } else {
+        // Shipment is not delivered yet, compute aging characteristic
         notDelivered.push(row);
+          if(today > etdDate){
+      const diffMS = today.getTime() - etdDate.getTime();
+      const diffDays = diffMS / (1000 * 60 * 60 * 24);
+      aging.push({
+          ...row,
+          agingDays: Math.floor(diffDays).toString()
+        });
+        }
       }
     }
   }
-  
-
-  return { total, closed, delivered, failed, delayed, notDelivered };
+  return { total, closed, delivered, failed, delayed, notDelivered, aging };
 }
 
 function toProperCase(s: string): string {
