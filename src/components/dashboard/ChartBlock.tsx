@@ -87,6 +87,20 @@ export default function ChartBlock({ kpis }: Props) {
       .sort((a, b) => b.value - a.value)
       .slice(0, 15);
   }, [kpis.failed]);
+  const agingByHub = useMemo(() => {
+  const counts: Record<string, number> = {};
+
+  for (const row of kpis.aging) {
+    const hub = row['Hub']?.trim() || 'Unknown';
+
+    counts[hub] = (counts[hub] ?? 0) + 1;
+  }
+
+  return Object.entries(counts)
+    .map(([name, value]) => ({ name, value }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 15);
+}, [kpis.aging]);
 
   const chartHeight = (count: number) => Math.max(280, count * 32 + 40);
 
@@ -174,6 +188,57 @@ export default function ChartBlock({ kpis }: Props) {
             </BarChart>
           </ResponsiveContainer>
         </div>
+        {/* Chart 4 — Aging by Hub */}
+<div className="rounded-2xl border-2 border-border bg-card p-5">
+  <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">
+    Top Hubs — Aging Shipments
+  </h4>
+
+  <ResponsiveContainer width="100%" height={chartHeight(agingByHub.length)}>
+    <BarChart
+      data={agingByHub}
+      layout="vertical"
+      barSize={18}
+      margin={{ right: 40 }}
+    >
+      <CartesianGrid
+        strokeDasharray="3 3"
+        stroke="hsl(var(--border))"
+        horizontal={false}
+      />
+
+      <XAxis
+        type="number"
+        tick={{ fontSize: 10 }}
+        allowDecimals={false}
+      />
+
+      <YAxis
+        dataKey="name"
+        type="category"
+        tick={{ fontSize: 10 }}
+        width={120}
+      />
+
+      <Tooltip contentStyle={tooltipStyle} />
+
+      <Bar
+        dataKey="value"
+        fill="#f97316"
+        radius={[0, 5, 5, 0]}
+      >
+        <LabelList
+          dataKey="value"
+          position="right"
+          style={{
+            fontSize: 10,
+            fill: 'hsl(var(--foreground))'
+          }}
+        />
+      </Bar>
+    </BarChart>
+  </ResponsiveContainer>
+</div>
 
       </div>
     </div>
