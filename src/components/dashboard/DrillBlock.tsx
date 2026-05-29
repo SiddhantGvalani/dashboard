@@ -9,7 +9,7 @@ interface Props {
 // Columns shown in UI table (download always includes ALL columns)
 const DELAYED_DISPLAY_COLS = ['Status', 'Delivery Date', 'Customer Remarks'];
 const NOT_YET_DISPLAY_COLS = ['Status', 'Customer Remarks'];
-const AGING_COLS = ['Hub', 'Status', 'ETD'];
+const AGING_DISPLAY_COLS = ['Docket Number', 'Hub', 'ETD', 'Days Aging'];
 
 export default function DrillBlock({ kpis }: Props) {
   return (
